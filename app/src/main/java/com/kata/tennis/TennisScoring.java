@@ -19,8 +19,8 @@ public class TennisScoring {
         }
     }
 
-    private void getScore() {
-
+    public String getScore() {
+        return getPlayer1Score() + ", " + getPlayer2Score();
     }
 
     public int getPlayer1GameScore() {

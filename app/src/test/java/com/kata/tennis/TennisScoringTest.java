@@ -11,6 +11,10 @@ public class TennisScoringTest {
     private final String player2 = "Player2";
     private TennisScoring tennisScoring;
 
+    //possible outcomes
+    private final String FIFTEEN_LOVE = "1, 0";
+    private final String LOVE_FIFTEEN = "0, 1";
+
     @Before
     public void setUp() {
         tennisScoring = new TennisScoring(player1, player2);
@@ -21,7 +25,7 @@ public class TennisScoringTest {
 
         tennisScoring.addPoint(player1);
 
-        assertEquals(1, tennisScoring.getPlayer1Score());
+        assertEquals(FIFTEEN_LOVE, tennisScoring.getScore());
     }
 
     @Test
@@ -29,7 +33,7 @@ public class TennisScoringTest {
 
         tennisScoring.addPoint(player2);
 
-        assertEquals(1, tennisScoring.getPlayer2Score());
+        assertEquals(LOVE_FIFTEEN, tennisScoring.getScore());
     }
 
     @Test
