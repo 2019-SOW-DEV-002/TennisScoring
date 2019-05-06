@@ -25,6 +25,14 @@ public class TennisScoringTest {
     }
 
     @Test
+    public void shouldAddScoreForPlayer2_When_Player2ScoresPoint() {
+
+        tennisScoring.addPoint(player2);
+
+        assertEquals(1, tennisScoring.getPlayer2Score());
+    }
+
+    @Test
     public void shouldAdd1GameForPlayer1_When_Player1Scores4Point() {
 
         tennisScoring.addPoint(player1);
@@ -43,4 +51,6 @@ public class TennisScoringTest {
 
         assertEquals(0, tennisScoring.getPlayer1Score());
     }
+
+
 }

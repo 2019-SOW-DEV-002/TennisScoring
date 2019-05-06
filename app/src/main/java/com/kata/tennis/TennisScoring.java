@@ -11,14 +11,6 @@ public class TennisScoring {
         this.player2 = new Player(player2Name);
     }
 
-    public int getPlayer1Score() {
-        return player1.getPoint();
-    }
-
-    public int getPlayer1GameScore() {
-        return player1.getGamesWon();
-    }
-
     public void addPoint(String player) {
         if(player1.getName().equalsIgnoreCase(player)) {
             addPointForPlayer1();
@@ -27,11 +19,27 @@ public class TennisScoring {
         }
     }
 
+    private void getScore() {
+
+    }
+
+    public int getPlayer1GameScore() {
+        return player1.getGamesWon();
+    }
+
     private void addPointForPlayer1() {
         player1.setPoint(player1.getPoint()+1);
     }
 
     private void addPointForPlayer2() {
         player2.setPoint(player2.getPoint()+1);
+    }
+
+    public int getPlayer1Score() {
+        return player1.getPoint();
+    }
+
+    public int getPlayer2Score() {
+        return player2.getPoint();
     }
 }
