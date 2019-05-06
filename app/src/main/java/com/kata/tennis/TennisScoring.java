@@ -16,23 +16,40 @@ public class TennisScoring {
     private Player player1;
     private Player player2;
 
+    private String currentScore;
+
     public TennisScoring(String player1Name, String player2Name) {
         this.player1 = new Player(player1Name);
         this.player2 = new Player(player2Name);
+        currentScore = LOVE + ALL;
     }
 
     public void addPoint(String player) {
         int player1Point = player1.getPoint();
         int player2Point = player2.getPoint();
 
+        if(hasWinner()) {
+            this.currentScore = getLatestScore();
+        }
+
         if(player1.getName().equalsIgnoreCase(player)) {
             addPointForPlayer1(player1Point + 1);
         } else if (player2.getName().equalsIgnoreCase(player)) {
             addPointForPlayer2(player2Point + 1);
         }
+        this.currentScore = getLatestScore();
+    }
+
+    private boolean hasWinner() {
+        int pointDiff = player1.getPoint() - player2.getPoint();
+        return isBothPlayersPast2points() && Math.abs(pointDiff) > 1;
     }
 
     public String getScore() {
+        return this.currentScore;
+    }
+
+    private String getLatestScore() {
         int pointsPlayer1 = player1.getPoint();
         int pointsPlayer2 = player2.getPoint();
         int pointDiff = pointsPlayer1 - pointsPlayer2;
