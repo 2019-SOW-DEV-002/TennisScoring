@@ -48,13 +48,5 @@ public class TennisScoringTest {
         assertEquals(1, tennisScoring.getPlayer1GameScore());
     }
 
-    @Test
-    public void shouldNotAddPointForPlayer1_When_Player2ScoresPoint() {
-
-        tennisScoring.addPoint(player2);
-
-        assertEquals(0, tennisScoring.getPlayer1Score());
-    }
-
 
 }
