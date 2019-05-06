@@ -25,6 +25,8 @@ public class TennisScoring {
     public String getScore() {
         if(player1.getPoint() == 4) {
             return player1.getName() + " wins";
+        } else if (player2.getPoint() == 4) {
+            return player2.getName() + " wins";
         }
         return getPlayer1Score() + ", " + getPlayer2Score();
     }

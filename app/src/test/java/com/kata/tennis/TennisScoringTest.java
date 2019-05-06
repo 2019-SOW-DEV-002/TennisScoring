@@ -48,4 +48,15 @@ public class TennisScoringTest {
 
         assertEquals(PLAYER_1_WIN, tennisScoring.getScore());
     }
+
+    @Test
+    public void player2WinsGame_When_Player2Scores4Points() {
+
+        tennisScoring.addPoint(player2);
+        tennisScoring.addPoint(player2);
+        tennisScoring.addPoint(player2);
+        tennisScoring.addPoint(player2);
+
+        assertEquals(PLAYER_2_WIN, tennisScoring.getScore());
+    }
 }
