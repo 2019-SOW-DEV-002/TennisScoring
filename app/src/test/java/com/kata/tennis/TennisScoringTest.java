@@ -69,22 +69,16 @@ public class TennisScoringTest {
     @Test
     public void shouldSetScoreAsPlayer1Advantage_When_BothPlayerHave3Points_And_Player1Scores1Point() {
 
-        stubScore(3, 3);
+        stubScore(4, 3);
 
-        assertEquals(DEUCE, tennisScoring.getScore());
-
-        tennisScoring.addPoint(namePlayer1);
         assertEquals(PLAYER_1_ADVANTAGE, tennisScoring.getScore());
     }
 
     @Test
     public void shouldSetScoreAsPlayer2Advantage_When_BothPlayerHave3Points_And_Player2Scores1Point() {
 
-        stubScore(3, 3);
+        stubScore(3, 4);
 
-        assertEquals(DEUCE, tennisScoring.getScore());
-
-        tennisScoring.addPoint(namePlayer2);
         assertEquals(PLAYER_2_ADVANTAGE, tennisScoring.getScore());
     }
 
