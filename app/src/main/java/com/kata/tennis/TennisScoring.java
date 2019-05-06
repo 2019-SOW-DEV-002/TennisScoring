@@ -39,14 +39,15 @@ public class TennisScoring {
 
         if(isBothPlayersPast2points()) {
 
-            if (Math.abs(pointDiff) == 1) {
+            if (pointDiff == 0) {
+                return DEUCE;
+
+            } else if (Math.abs(pointDiff) == 1) {
                 if (pointDiff == 1) {
                     return ADVANTAGE + player1.getName();
                 } else {
                     return ADVANTAGE + player2.getName();
                 }
-            } else if (pointDiff == 0) {
-                return DEUCE;
             } else {
                 if(pointsPlayer1 > pointsPlayer2) {
                     return player1.getName() + WINS;
