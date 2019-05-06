@@ -3,6 +3,14 @@ package com.kata.tennis;
 import com.kata.tennis.domain.Player;
 
 public class TennisScoring {
+
+    public static final String LOVE = "Love";
+    public static final String FIFTEEN = "Fifteen";
+    public static final String THIRTY = "Thirty";
+    public static final String FORTY = "Forty";
+    public static final String DEUCE = "Deuce";
+    public static final String WINS = " wins";
+
     private Player player1;
     private Player player2;
 
@@ -23,10 +31,18 @@ public class TennisScoring {
     }
 
     public String getScore() {
-        if(player1.getPoint() == 4) {
-            return player1.getName() + " wins";
-        } else if (player2.getPoint() == 4) {
-            return player2.getName() + " wins";
+        int pointsPlayer1 = player1.getPoint();
+        int pointsPlayer2 = player2.getPoint();
+
+        if(pointsPlayer1 == 3 && pointsPlayer2 == 3) {
+            return DEUCE;
+        }
+        if(pointsPlayer1 == 4) {
+            return player1.getName() + WINS;
+        } else {
+            if (pointsPlayer2 == 4) {
+                return player2.getName() + WINS;
+            }
         }
         return getPlayer1Score() + ", " + getPlayer2Score();
     }
@@ -50,14 +66,14 @@ public class TennisScoring {
     private String getDisplayPointsFor(int score) {
         switch (score) {
             case 3:
-                return "Forty";
+                return FORTY;
             case 2:
-                return "Thirty";
+                return THIRTY;
             case 1:
-                return "Fifteen";
+                return FIFTEEN;
             case 0:
             default:
-                return "Love";
+                return LOVE;
         }
     }
 }
