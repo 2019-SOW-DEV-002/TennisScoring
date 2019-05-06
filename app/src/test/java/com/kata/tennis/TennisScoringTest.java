@@ -4,7 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.kata.tennis.TennisScoring.ADVANTAGE;
+import static com.kata.tennis.TennisScoring.ALL;
 import static com.kata.tennis.TennisScoring.DEUCE;
+import static com.kata.tennis.TennisScoring.FIFTEEN;
+import static com.kata.tennis.TennisScoring.LOVE;
+import static com.kata.tennis.TennisScoring.WINS;
 import static org.junit.Assert.assertEquals;
 
 public class TennisScoringTest {
@@ -14,16 +18,24 @@ public class TennisScoringTest {
     private TennisScoring tennisScoring;
 
     //possible outcomes
-    private final String LOVE_FIFTEEN = "Love, Fifteen";
-    private final String FIFTEEN_LOVE = "Fifteen, Love";
-    private final String PLAYER_1_WIN = namePlayer1 + " wins";
-    private final String PLAYER_2_WIN = namePlayer2 + " wins";
+    private final String SPACE = " ";
+    private final String LOVE_ALL = LOVE + ALL;
+    private final String LOVE_FIFTEEN = LOVE + SPACE + FIFTEEN;
+    private final String FIFTEEN_LOVE = FIFTEEN + SPACE + LOVE;
+    private final String PLAYER_1_WIN = namePlayer1 + WINS;
+    private final String PLAYER_2_WIN = namePlayer2 + WINS;
     private final String PLAYER_1_ADVANTAGE = ADVANTAGE + namePlayer1;
     private final String PLAYER_2_ADVANTAGE = ADVANTAGE + namePlayer2;
 
     @Before
     public void setUp() {
         tennisScoring = new TennisScoring(namePlayer1, namePlayer2);
+    }
+
+    @Test
+    public void shouldSetScoreAsLoveAll_At_Start() {
+
+        assertEquals(LOVE_ALL, tennisScoring.getScore());
     }
 
     @Test

@@ -4,13 +4,14 @@ import com.kata.tennis.domain.Player;
 
 public class TennisScoring {
 
-    public static final String LOVE = "Love";
-    public static final String FIFTEEN = "Fifteen";
-    public static final String THIRTY = "Thirty";
-    public static final String FORTY = "Forty";
-    public static final String DEUCE = "Deuce";
-    public static final String ADVANTAGE = "Advantage ";
-    public static final String WINS = " wins";
+    static final String ALL = " all";
+    static final String LOVE = "Love";
+    static final String FIFTEEN = "Fifteen";
+    static final String THIRTY = "Thirty";
+    static final String FORTY = "Forty";
+    static final String DEUCE = "Deuce";
+    static final String ADVANTAGE = "Advantage ";
+    static final String WINS = " wins";
 
     private Player player1;
     private Player player2;
@@ -58,8 +59,10 @@ public class TennisScoring {
                 return player1.getName() + WINS;
             } else if (pointsPlayer2 == 4) {
                 return player2.getName() + WINS;
+            } else if (pointsPlayer1 == pointsPlayer2){
+                return getPlayer1Score() + ALL;
             } else {
-                return getPlayer1Score() + ", " + getPlayer2Score();
+                return getPlayer1Score() + " " + getPlayer2Score();
             }
         }
     }
