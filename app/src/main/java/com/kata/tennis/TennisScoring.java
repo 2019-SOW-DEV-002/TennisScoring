@@ -16,4 +16,8 @@ public class TennisScoring {
     public void addPointForPlayer1() {
         player1.setPoint(player1.getPoint()+1);
     }
+
+    public int getPlayer1GameScore() {
+        return player1.getGamesWon();
+    }
 }
