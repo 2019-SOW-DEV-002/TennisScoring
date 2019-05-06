@@ -3,6 +3,7 @@ package com.kata.tennis;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.kata.tennis.TennisScoring.ADVANTAGE;
 import static com.kata.tennis.TennisScoring.DEUCE;
 import static org.junit.Assert.assertEquals;
 
@@ -17,6 +18,8 @@ public class TennisScoringTest {
     private final String FIFTEEN_LOVE = "Fifteen, Love";
     private final String PLAYER_1_WIN = namePlayer1 + " wins";
     private final String PLAYER_2_WIN = namePlayer2 + " wins";
+    private final String PLAYER_1_ADVANTAGE = ADVANTAGE + namePlayer1;
+    private final String PLAYER_2_ADVANTAGE = ADVANTAGE + namePlayer2;
 
     @Before
     public void setUp() {
@@ -72,5 +75,37 @@ public class TennisScoringTest {
         tennisScoring.addPoint(namePlayer1);
 
         assertEquals(DEUCE, tennisScoring.getScore());
+    }
+
+    @Test
+    public void shouldSetScoreAsPlayer1Advantage_When_BothPlayerHave3Points_And_Player1Scores1Point() {
+
+        tennisScoring.addPoint(namePlayer2);
+        tennisScoring.addPoint(namePlayer1);
+        tennisScoring.addPoint(namePlayer2);
+        tennisScoring.addPoint(namePlayer1);
+        tennisScoring.addPoint(namePlayer2);
+        tennisScoring.addPoint(namePlayer1);
+
+        assertEquals(DEUCE, tennisScoring.getScore());
+
+        tennisScoring.addPoint(namePlayer1);
+        assertEquals(PLAYER_1_ADVANTAGE, tennisScoring.getScore());
+    }
+
+    @Test
+    public void shouldSetScoreAsPlayer2Advantage_When_BothPlayerHave3Points_And_Player2Scores1Point() {
+
+        tennisScoring.addPoint(namePlayer2);
+        tennisScoring.addPoint(namePlayer1);
+        tennisScoring.addPoint(namePlayer2);
+        tennisScoring.addPoint(namePlayer1);
+        tennisScoring.addPoint(namePlayer2);
+        tennisScoring.addPoint(namePlayer1);
+
+        assertEquals(DEUCE, tennisScoring.getScore());
+
+        tennisScoring.addPoint(namePlayer2);
+        assertEquals(PLAYER_2_ADVANTAGE, tennisScoring.getScore());
     }
 }

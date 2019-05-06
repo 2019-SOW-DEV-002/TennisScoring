@@ -9,6 +9,7 @@ public class TennisScoring {
     public static final String THIRTY = "Thirty";
     public static final String FORTY = "Forty";
     public static final String DEUCE = "Deuce";
+    public static final String ADVANTAGE = "Advantage ";
     public static final String WINS = " wins";
 
     private Player player1;
@@ -33,10 +34,20 @@ public class TennisScoring {
     public String getScore() {
         int pointsPlayer1 = player1.getPoint();
         int pointsPlayer2 = player2.getPoint();
+        int pointDiff = pointsPlayer1 - pointsPlayer2;
 
         if(pointsPlayer1 == 3 && pointsPlayer2 == 3) {
             return DEUCE;
         }
+
+        if(pointsPlayer1 > 2 && pointsPlayer2 > 2 && Math.abs(pointDiff) == 1) {
+            if(pointDiff == 1){
+                return ADVANTAGE + player1.getName();
+            } else {
+                return ADVANTAGE + player2.getName();
+            }
+        }
+
         if(pointsPlayer1 == 4) {
             return player1.getName() + WINS;
         } else {
