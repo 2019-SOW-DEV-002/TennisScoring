@@ -36,26 +36,36 @@ public class TennisScoring {
         int pointsPlayer2 = player2.getPoint();
         int pointDiff = pointsPlayer1 - pointsPlayer2;
 
-        if(pointsPlayer1 == 3 && pointsPlayer2 == 3) {
-            return DEUCE;
-        }
+        if(isBothPlayersPast2points()) {
 
-        if(pointsPlayer1 > 2 && pointsPlayer2 > 2 && Math.abs(pointDiff) == 1) {
-            if(pointDiff == 1){
-                return ADVANTAGE + player1.getName();
+            if (Math.abs(pointDiff) == 1) {
+                if (pointDiff == 1) {
+                    return ADVANTAGE + player1.getName();
+                } else {
+                    return ADVANTAGE + player2.getName();
+                }
+            } else if (pointDiff == 0) {
+                return DEUCE;
             } else {
-                return ADVANTAGE + player2.getName();
+                if(pointsPlayer1 > pointsPlayer2) {
+                    return player1.getName() + WINS;
+                } else {
+                    return player2.getName() + WINS;
+                }
             }
-        }
-
-        if(pointsPlayer1 == 4) {
-            return player1.getName() + WINS;
         } else {
-            if (pointsPlayer2 == 4) {
+            if (pointsPlayer1 == 4) {
+                return player1.getName() + WINS;
+            } else if (pointsPlayer2 == 4) {
                 return player2.getName() + WINS;
+            } else {
+                return getPlayer1Score() + ", " + getPlayer2Score();
             }
         }
-        return getPlayer1Score() + ", " + getPlayer2Score();
+    }
+
+    private boolean isBothPlayersPast2points() {
+        return player1.getPoint() > 2 && player2.getPoint() > 2;
     }
 
     private void addPointForPlayer1(int point) {

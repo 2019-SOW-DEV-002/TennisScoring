@@ -82,6 +82,32 @@ public class TennisScoringTest {
         assertEquals(PLAYER_2_ADVANTAGE, tennisScoring.getScore());
     }
 
+    @Test
+    public void shouldSetScoreAsDeuce_When_Player1HadAdvantage_And_Player2Scores1Point() {
+
+        stubScore(4, 4);
+
+        assertEquals(DEUCE, tennisScoring.getScore());
+    }
+
+    @Test
+    public void shouldSetPlayer1AsWinner_When_Player1HadAdvantage_And_Player1Scores1Point() {
+
+        stubScore(5, 3);
+
+        assertEquals(PLAYER_1_WIN, tennisScoring.getScore());
+    }
+
+    @Test
+    public void shouldSetPlayer2AsWinner_When_Player2HadAdvantage_And_Player2Scores1Point() {
+
+        stubScore(3, 5);
+
+        assertEquals(PLAYER_2_WIN, tennisScoring.getScore());
+    }
+
+
+
     private void stubScore(int pointsPlayer1, int pointsPlayer2) {
         for (int i = 0; i < pointsPlayer1; i++) {
             tennisScoring.addPoint(namePlayer1);
