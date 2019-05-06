@@ -4,9 +4,11 @@ import com.kata.tennis.domain.Player;
 
 public class TennisScoring {
     private Player player1;
+    private Player player2;
 
-    public TennisScoring(String player1Name) {
+    public TennisScoring(String player1Name, String player2Name) {
         this.player1 = new Player(player1Name);
+        this.player2 = new Player(player2Name);
     }
 
     public int getPlayer1Score() {
@@ -19,5 +21,9 @@ public class TennisScoring {
 
     public int getPlayer1GameScore() {
         return player1.getGamesWon();
+    }
+
+    public void addPointForPlayer2() {
+        player2.setPoint(player2.getPoint()+1);
     }
 }
