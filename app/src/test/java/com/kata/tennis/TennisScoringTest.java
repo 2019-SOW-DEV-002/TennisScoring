@@ -12,8 +12,10 @@ public class TennisScoringTest {
     private TennisScoring tennisScoring;
 
     //possible outcomes
-    private final String FIFTEEN_LOVE = "1, 0";
-    private final String LOVE_FIFTEEN = "0, 1";
+    private final String LOVE_FIFTEEN = "Love, Fifteen";
+    private final String FIFTEEN_LOVE = "Fifteen, Love";
+    private final String PLAYER_1_WIN = "Player1 wins";
+    private final String PLAYER_2_WIN = "Player2 wins";
 
     @Before
     public void setUp() {
@@ -37,15 +39,14 @@ public class TennisScoringTest {
     }
 
     @Test
-    public void shouldAdd1GameForPlayer1_When_Player1Scores4Point() {
+    public void player1WinsGame_When_Player1Scores4Points() {
 
         tennisScoring.addPoint(player1);
         tennisScoring.addPoint(player1);
         tennisScoring.addPoint(player1);
         tennisScoring.addPoint(player1);
 
-        assertEquals(0, tennisScoring.getPlayer1Score());
-        assertEquals(1, tennisScoring.getPlayer1GameScore());
+        assertEquals(PLAYER_1_WIN, tennisScoring.getScore());
     }
 
 
