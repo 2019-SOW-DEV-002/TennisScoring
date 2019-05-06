@@ -48,6 +48,4 @@ public class TennisScoringTest {
 
         assertEquals(PLAYER_1_WIN, tennisScoring.getScore());
     }
-
-
 }
