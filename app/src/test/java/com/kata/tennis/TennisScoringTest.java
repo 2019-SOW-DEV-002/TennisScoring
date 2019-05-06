@@ -8,7 +8,7 @@ public class TennisScoringTest {
 
     @Test
     public void shouldAddScoreForPlayer1_When_Player1Scores1Point() {
-        TennisScoring tennisScoring = new TennisScoring();
+        TennisScoring tennisScoring = new TennisScoring("Player1");
 
         tennisScoring.addPointForPlayer1();
 
