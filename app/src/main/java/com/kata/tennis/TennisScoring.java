@@ -15,15 +15,23 @@ public class TennisScoring {
         return player1.getPoint();
     }
 
-    public void addPointForPlayer1() {
-        player1.setPoint(player1.getPoint()+1);
-    }
-
     public int getPlayer1GameScore() {
         return player1.getGamesWon();
     }
 
-    public void addPointForPlayer2() {
+    public void addPoint(String player) {
+        if(player1.getName().equalsIgnoreCase(player)) {
+            addPointForPlayer1();
+        } else if (player2.getName().equalsIgnoreCase(player)) {
+            addPointForPlayer2();
+        }
+    }
+
+    private void addPointForPlayer1() {
+        player1.setPoint(player1.getPoint()+1);
+    }
+
+    private void addPointForPlayer2() {
         player2.setPoint(player2.getPoint()+1);
     }
 }

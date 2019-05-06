@@ -19,7 +19,7 @@ public class TennisScoringTest {
     @Test
     public void shouldAddScoreForPlayer1_When_Player1ScoresPoint() {
 
-        tennisScoring.addPointForPlayer1();
+        tennisScoring.addPoint(player1);
 
         assertEquals(1, tennisScoring.getPlayer1Score());
     }
@@ -27,10 +27,10 @@ public class TennisScoringTest {
     @Test
     public void shouldAdd1GameForPlayer1_When_Player1Scores4Point() {
 
-        tennisScoring.addPointForPlayer1();
-        tennisScoring.addPointForPlayer1();
-        tennisScoring.addPointForPlayer1();
-        tennisScoring.addPointForPlayer1();
+        tennisScoring.addPoint(player1);
+        tennisScoring.addPoint(player1);
+        tennisScoring.addPoint(player1);
+        tennisScoring.addPoint(player1);
 
         assertEquals(0, tennisScoring.getPlayer1Score());
         assertEquals(1, tennisScoring.getPlayer1GameScore());
@@ -39,7 +39,7 @@ public class TennisScoringTest {
     @Test
     public void shouldNotAddPointForPlayer1_When_Player2ScoresPoint() {
 
-        tennisScoring.addPointForPlayer2();
+        tennisScoring.addPoint(player2);
 
         assertEquals(0, tennisScoring.getPlayer1Score());
     }
