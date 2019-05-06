@@ -85,15 +85,36 @@ public class TennisScoringTest {
                 new Object[]{6, 6, DEUCE},
                 new Object[]{6, 7, ADVANTAGE + namePlayer2},
                 new Object[]{6, 8, namePlayer2 + WINS},
+
+                new Object[]{7, 0, namePlayer1 + WINS},
+                new Object[]{0, 7, namePlayer2 + WINS},
         };
     }
 
-    private void stubScore(int pointsPlayer1, int pointsPlayer2) {
-        for (int i = 0; i < pointsPlayer1; i++) {
-            tennisScoring.addPoint(namePlayer1);
+    /**
+     * in Tennis, scoring happens one point per play
+     * Player cannot score more than 4 points consecutively
+     * @param pointsPlayer1 Score of player 1
+     * @param pointsPlayer2 Score of player 2
+     */
+    private void stubScore(final int pointsPlayer1, final int pointsPlayer2) {
+        int pointDiff = pointsPlayer1 - pointsPlayer2;
+        String playerWithMorePoints;
+        int numberOfPointsScoredWithoutWin;
+        if(pointDiff > 0) { //find player with more points
+            playerWithMorePoints = namePlayer1;
+            numberOfPointsScoredWithoutWin = pointsPlayer2;
+        } else {
+            playerWithMorePoints = namePlayer2;
+            numberOfPointsScoredWithoutWin = pointsPlayer1;
         }
-        for (int i = 0; i < pointsPlayer2; i++) {
+
+        for (int i = 0; i < numberOfPointsScoredWithoutWin; i++) { //add common points
+            tennisScoring.addPoint(namePlayer1);
             tennisScoring.addPoint(namePlayer2);
+        }
+        for (int i = 0; i < Math.abs(pointDiff); i++) { //add points outscored by the player with more points
+            tennisScoring.addPoint(playerWithMorePoints);
         }
     }
 }

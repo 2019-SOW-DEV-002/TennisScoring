@@ -30,6 +30,7 @@ public class TennisScoring {
 
         if(hasWinner()) {
             this.currentScore = getLatestScore();
+            return;
         }
 
         if(player1.getName().equalsIgnoreCase(player)) {
@@ -38,11 +39,6 @@ public class TennisScoring {
             addPointForPlayer2(player2Point + 1);
         }
         this.currentScore = getLatestScore();
-    }
-
-    private boolean hasWinner() {
-        int pointDiff = player1.getPoint() - player2.getPoint();
-        return isBothPlayersPast2points() && Math.abs(pointDiff) > 1;
     }
 
     public String getScore() {
@@ -73,9 +69,9 @@ public class TennisScoring {
                 }
             }
         } else {
-            if (pointsPlayer1 == 4) {
+            if (pointsPlayer1 > 3) {
                 return player1.getName() + WINS;
-            } else if (pointsPlayer2 == 4) {
+            } else if (pointsPlayer2 > 3) {
                 return player2.getName() + WINS;
             } else if (pointsPlayer1 == pointsPlayer2){
                 return getPlayer1Score() + ALL;
@@ -87,6 +83,11 @@ public class TennisScoring {
 
     private boolean isBothPlayersPast2points() {
         return player1.getPoint() > 2 && player2.getPoint() > 2;
+    }
+
+    private boolean hasWinner() {
+        int pointDiff = player1.getPoint() - player2.getPoint();
+        return isBothPlayersPast2points() && Math.abs(pointDiff) > 1;
     }
 
     private void addPointForPlayer1(int point) {
@@ -114,8 +115,9 @@ public class TennisScoring {
             case 1:
                 return FIFTEEN;
             case 0:
-            default:
                 return LOVE;
+            default:
+                throw new IllegalArgumentException("Cannot score so high");
         }
     }
 }
