@@ -29,7 +29,7 @@ public class TennisScoringTest {
     @Test
     public void shouldAddScoreForPlayer1_When_Player1ScoresPoint() {
 
-        tennisScoring.addPoint(namePlayer1);
+       stubScore(1, 0);
 
         assertEquals(FIFTEEN_LOVE, tennisScoring.getScore());
     }
@@ -37,7 +37,7 @@ public class TennisScoringTest {
     @Test
     public void shouldAddScoreForPlayer2_When_Player2ScoresPoint() {
 
-        tennisScoring.addPoint(namePlayer2);
+        stubScore(0, 1);
 
         assertEquals(LOVE_FIFTEEN, tennisScoring.getScore());
     }
@@ -45,10 +45,7 @@ public class TennisScoringTest {
     @Test
     public void player1WinsGame_When_Player1Scores4Points() {
 
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer1);
+        stubScore(4, 0);
 
         assertEquals(PLAYER_1_WIN, tennisScoring.getScore());
     }
@@ -56,10 +53,7 @@ public class TennisScoringTest {
     @Test
     public void player2WinsGame_When_Player2Scores4Points() {
 
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer2);
+        stubScore(0, 4);
 
         assertEquals(PLAYER_2_WIN, tennisScoring.getScore());
     }
@@ -67,12 +61,7 @@ public class TennisScoringTest {
     @Test
     public void shouldSetScoreAsDeuce_When_BothPlayerHave3Points() {
 
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
+        stubScore(3, 3);
 
         assertEquals(DEUCE, tennisScoring.getScore());
     }
@@ -80,12 +69,7 @@ public class TennisScoringTest {
     @Test
     public void shouldSetScoreAsPlayer1Advantage_When_BothPlayerHave3Points_And_Player1Scores1Point() {
 
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
+        stubScore(3, 3);
 
         assertEquals(DEUCE, tennisScoring.getScore());
 
@@ -96,16 +80,20 @@ public class TennisScoringTest {
     @Test
     public void shouldSetScoreAsPlayer2Advantage_When_BothPlayerHave3Points_And_Player2Scores1Point() {
 
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
-        tennisScoring.addPoint(namePlayer2);
-        tennisScoring.addPoint(namePlayer1);
+        stubScore(3, 3);
 
         assertEquals(DEUCE, tennisScoring.getScore());
 
         tennisScoring.addPoint(namePlayer2);
         assertEquals(PLAYER_2_ADVANTAGE, tennisScoring.getScore());
+    }
+
+    private void stubScore(int pointsPlayer1, int pointsPlayer2) {
+        for (int i = 0; i < pointsPlayer1; i++) {
+            tennisScoring.addPoint(namePlayer1);
+        }
+        for (int i = 0; i < pointsPlayer2; i++) {
+            tennisScoring.addPoint(namePlayer2);
+        }
     }
 }
