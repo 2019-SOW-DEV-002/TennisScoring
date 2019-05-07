@@ -49,36 +49,55 @@ public class TennisScoring {
     private String getLatestScore() {
         int pointsPlayer1 = player1.getPoint();
         int pointsPlayer2 = player2.getPoint();
-        int pointDiff = pointsPlayer1 - pointsPlayer2;
 
         if(isAfterDeuce()) {
-
-            if (pointDiff == 0) {
-                return DEUCE;
-
-            } else if (Math.abs(pointDiff) == 1) {
-                if (pointDiff == 1) {
-                    return ADVANTAGE + player1.getName();
-                } else {
-                    return ADVANTAGE + player2.getName();
-                }
-            } else {
-                if(pointsPlayer1 > pointsPlayer2) {
-                    return player1.getName() + WINS;
-                } else {
-                    return player2.getName() + WINS;
-                }
-            }
+            return getScoreAfterDeuce(pointsPlayer1, pointsPlayer2);
         } else {
-            if (pointsPlayer1 > 3) {
-                return player1.getName() + WINS;
-            } else if (pointsPlayer2 > 3) {
-                return player2.getName() + WINS;
-            } else if (pointsPlayer1 == pointsPlayer2){
-                return getPlayer1Score() + ALL;
-            } else {
-                return getPlayer1Score() + " " + getPlayer2Score();
-            }
+            return getScoreBeforeDeuce(pointsPlayer1, pointsPlayer2);
+        }
+    }
+
+    private String getScoreAfterDeuce(int pointsPlayer1, int pointsPlayer2) {
+        int pointDiff = pointsPlayer1 - pointsPlayer2;
+        if (pointDiff == 0) {
+            return DEUCE;
+
+        } else if (Math.abs(pointDiff) == 1) {
+            return ADVANTAGE + getPlayerNameHavingAdvantage(pointDiff);
+
+        } else {
+            return getWinningPlayerName(pointsPlayer1, pointsPlayer2) + WINS;
+        }
+    }
+
+    private String getScoreBeforeDeuce(int pointsPlayer1, int pointsPlayer2) {
+        if (pointsPlayer1 == pointsPlayer2) {
+            return getPlayer1Score() + ALL;
+
+        } else if (pointsPlayer2 > 3) {
+            return player2.getName() + WINS;
+
+        } else if (pointsPlayer1 > 3) {
+            return player1.getName() + WINS;
+
+        } else {
+            return getPlayer1Score() + " " + getPlayer2Score();
+        }
+    }
+
+    private String getPlayerNameHavingAdvantage(int pointDiff) {
+        if (pointDiff > 0) {
+            return player1.getName();
+        } else {
+            return player2.getName();
+        }
+    }
+
+    private String getWinningPlayerName(int pointsPlayer1, int pointsPlayer2) {
+        if(pointsPlayer1 > pointsPlayer2) {
+            return player1.getName();
+        } else {
+            return player2.getName();
         }
     }
 
