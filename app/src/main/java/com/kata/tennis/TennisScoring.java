@@ -25,19 +25,24 @@ public class TennisScoring {
     }
 
     public void addPoint(String player) {
-        int player1Point = player1.getPoint();
-        int player2Point = player2.getPoint();
 
-        if(hasWinner()) {
+        Player playerWhoScoredPoint;
+
+        if(player1.getName().equalsIgnoreCase(player)) {
+            playerWhoScoredPoint = player1;
+        } else if (player2.getName().equalsIgnoreCase(player)) {
+            playerWhoScoredPoint = player2;
+        } else {
+            throw new IllegalArgumentException("This player is not in the game");
+        }
+
+        if(isWinner()) {
             this.currentScore = getLatestScore();
             return;
         }
 
-        if(player1.getName().equalsIgnoreCase(player)) {
-            addPointForPlayer1(player1Point + 1);
-        } else if (player2.getName().equalsIgnoreCase(player)) {
-            addPointForPlayer2(player2Point + 1);
-        }
+        playerWhoScoredPoint.addOnePoint();
+
         this.currentScore = getLatestScore();
     }
 
@@ -85,17 +90,9 @@ public class TennisScoring {
         return player1.getPoint() > 2 && player2.getPoint() > 2;
     }
 
-    private boolean hasWinner() {
+    private boolean isWinner() {
         int pointDiff = player1.getPoint() - player2.getPoint();
         return isBothPlayersPast2points() && Math.abs(pointDiff) > 1;
-    }
-
-    private void addPointForPlayer1(int point) {
-        player1.setPoint(point);
-    }
-
-    private void addPointForPlayer2(int point) {
-        player2.setPoint(point);
     }
 
     private String getPlayer1Score() {

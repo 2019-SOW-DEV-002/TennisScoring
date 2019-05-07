@@ -17,8 +17,7 @@ public class Player {
         return point;
     }
 
-    public void setPoint(int point) {
-        this.point = point;
-
+    public void addOnePoint() {
+        this.point++;
     }
 }
