@@ -37,6 +37,9 @@ proguard/
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.idea/encodings.xml
+/.idea/render.experimental.xml
+/.idea/runConfigurations.xml
 .DS_Store
 /build
 /captures
