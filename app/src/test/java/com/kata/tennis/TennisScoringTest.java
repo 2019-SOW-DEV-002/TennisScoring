@@ -93,7 +93,7 @@ public class TennisScoringTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowException_When_addScoreForUnknownPlayer() {
-        tennisScoring.addPoint("any_player");
+        tennisScoring.addPoint("any_other_player");
     }
 
     /**
