@@ -63,10 +63,10 @@ public class TennisScoring {
             return DEUCE;
 
         } else if (Math.abs(pointDiff) == 1) {
-            return ADVANTAGE + getPlayerNameHavingAdvantage(pointDiff);
+            return ADVANTAGE + getPlayerNameWithMorePoints(pointsPlayer1, pointsPlayer2);
 
         } else {
-            return getWinningPlayerName(pointsPlayer1, pointsPlayer2) + WINS;
+            return getPlayerNameWithMorePoints(pointsPlayer1, pointsPlayer2) + WINS;
         }
     }
 
@@ -85,15 +85,7 @@ public class TennisScoring {
         }
     }
 
-    private String getPlayerNameHavingAdvantage(int pointDiff) {
-        if (pointDiff > 0) {
-            return player1.getName();
-        } else {
-            return player2.getName();
-        }
-    }
-
-    private String getWinningPlayerName(int pointsPlayer1, int pointsPlayer2) {
+    private String getPlayerNameWithMorePoints(int pointsPlayer1, int pointsPlayer2) {
         if(pointsPlayer1 > pointsPlayer2) {
             return player1.getName();
         } else {
