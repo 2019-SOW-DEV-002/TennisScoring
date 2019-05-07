@@ -91,6 +91,11 @@ public class TennisScoringTest {
         };
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowException_When_addScoreForUnknownPlayer() {
+        tennisScoring.addPoint("any_player");
+    }
+
     /**
      * in Tennis, scoring happens one point per play
      * Player cannot score more than 4 points consecutively
