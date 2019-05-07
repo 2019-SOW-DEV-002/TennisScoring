@@ -21,7 +21,7 @@ public class TennisScoring {
     public TennisScoring(String player1Name, String player2Name) {
         this.player1 = new Player(player1Name);
         this.player2 = new Player(player2Name);
-        currentScore = LOVE + ALL;
+        this.currentScore = LOVE + ALL;
     }
 
     public void addPoint(String player) {
@@ -36,13 +36,9 @@ public class TennisScoring {
             throw new IllegalArgumentException("This player is not in the game");
         }
 
-        if(isWinner()) {
-            this.currentScore = getLatestScore();
-            return;
+        if (noWinnerFound()) {
+            playerWhoScoredPoint.addOnePoint();
         }
-
-        playerWhoScoredPoint.addOnePoint();
-
         this.currentScore = getLatestScore();
     }
 
@@ -55,7 +51,7 @@ public class TennisScoring {
         int pointsPlayer2 = player2.getPoint();
         int pointDiff = pointsPlayer1 - pointsPlayer2;
 
-        if(isBothPlayersPast2points()) {
+        if(isAfterDeuce()) {
 
             if (pointDiff == 0) {
                 return DEUCE;
@@ -86,13 +82,17 @@ public class TennisScoring {
         }
     }
 
-    private boolean isBothPlayersPast2points() {
+    private boolean isAfterDeuce() {
         return player1.getPoint() > 2 && player2.getPoint() > 2;
     }
 
-    private boolean isWinner() {
+    private boolean noWinnerFound() {
         int pointDiff = player1.getPoint() - player2.getPoint();
-        return isBothPlayersPast2points() && Math.abs(pointDiff) > 1;
+        if(isAfterDeuce()) {
+            return Math.abs(pointDiff) < 2;
+        } else {
+            return player1.getPoint() <= 3 || player2.getPoint() <= 3;
+        }
     }
 
     private String getPlayer1Score() {
